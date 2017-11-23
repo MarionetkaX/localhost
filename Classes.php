@@ -18,18 +18,22 @@ class TaskManager{
         [
             'title' => 'Разность чисел',
             'description' => 'Посчитать разность двух чисел',
+            'class' => TaskSubt::class
         ],
         [
             'title' => 'Произведение чисел',
             'description' => 'Посчитать произведение двух чисел',
+            'class' => TaskComp::class
         ],
         [
             'title' => 'Частное чисел',
             'description' => 'Посчитать частное двух чисел',
+            'class' =>TaskPriv::class
         ],
         [
             'title' => 'Факториал числа n',
             'description' => 'Вычислить n!',
+            'class' =>TaskFact::class
         ],
         [
             'title' => 'Числа Фибоначчи',
@@ -141,4 +145,75 @@ class TaskSumm extends TaskPrototype{
         return $out;
     }
 
+}
+
+class TaskSubt extends TaskPrototype{
+
+    public $x1=7;
+    public $x2=2;
+
+    private function subt($x1,$x2){
+        return $x1-$x2;
+    }
+
+    public function func()
+    {
+        $out[] = "Число x1={$this->x1}";
+        $out[] = "Число x2={$this->x2}";
+        $out[] = "x1-x2={$this->Subt($this->x1,$this->x2)}";
+        return $out;
+    }
+
+}
+
+class TaskComp extends TaskPrototype{
+
+    public $x1=7;
+    public $x2=2;
+
+    private function comp($x1,$x2){
+        return $x1*$x2;
+    }
+
+    public function func()
+    {
+        $out[] = "Число x1={$this->x1}";
+        $out[] = "Число x2={$this->x2}";
+        $out[] = "x1*x2={$this->comp($this->x1,$this->x2)}";
+        return $out;
+    }
+
+}
+
+class TaskPriv extends TaskPrototype{
+
+    public $x1=8;
+    public $x2=2;
+
+    private function priv($x1,$x2){
+        return $x1/$x2;
+    }
+
+    public function func()
+    {
+        $out[] = "Число x1={$this->x1}";
+        $out[] = "Число x2={$this->x2}";
+        $out[] = "x1:x2={$this->priv($this->x1,$this->x2)}";
+        return $out;
+    }
+
+}
+
+class TaskFact extends TaskPrototype{
+
+    public $fact1;
+    public $a;
+
+
+     public function func()
+     {
+         $fact1 = gmp_fact(5);
+         echo gmp_strval($fact1) . "/n";
+         return $fact1;
+     }
 }
