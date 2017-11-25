@@ -38,6 +38,7 @@ class TaskManager{
         [
             'title' => 'Числа Фибоначчи',
             'description' => 'Вывести n-ый элемент численности фибоначи',
+            'class' =>TaskFib::class
         ],
         [
             'title' => 'Генерация массива',
@@ -206,14 +207,59 @@ class TaskPriv extends TaskPrototype{
 
 class TaskFact extends TaskPrototype{
 
-    public $fact1;
-    public $a;
+
+    public $n = 7;
+    public $i;
+    public $s;
+
+    private function fact($n){
+
+        if ($n == 0)
+        {
+            return 1;
+        }
+        $s = 1;
+        for ($i = 1; $i <= $n; $i++)
+        {
+            $s = $s * $i;
+        }
+        return $s;
+    }
+
+    public function func()
+    {
+        $out[] = "n!={$this->n}";
+        $out[] = "n!={$this->fact($this->n)}";
+        return $out;
+    }
+}
+
+class TaskFib extends TaskPrototype{
+
+    public $fib1 = 0;
+    public $fib2 = 1;
+    public $i;
+    public $sum;
+    public $n;
+    public $s;
+
+    private function fib($fib1,$fib2){
+        $i=1;
+        $n=5;
+        while ($i<$n) {
+            $sum = $fib2 + $fib1;
+            $fib1 = $fib2;
+            $fib2 = $sum;
+            $i++;
+        }
+    return $i<$n;
+    }
 
 
-     public function func()
-     {
-         $fact1 = gmp_fact(5);
-         echo gmp_strval($fact1) . "/n";
-         return $fact1;
-     }
+    public function func()
+    {
+        $out[] = "n!={$this->fib($this->sum)}";
+        return $out;
+    }
+
 }
