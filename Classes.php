@@ -43,15 +43,18 @@ class TaskManager{
         [
             'title' => 'Генерация массива',
             'description' => 'Сгенерировать одномерный массив из случайных n элементов',
+            'class' =>TaskMas::class
         ],
 
         [
             'title' => 'Изменение массива',
             'description' => 'Сгенерировать одномерный массив из случайных n элементов. Вывести исходный массив. Вывести отдельно четные и нечетные элементы массива',
+            'class' =>TaskMasiv::class
         ],
         [
             'title' => 'Сортировка массива. Пузырек',
             'description' => 'Сгенерировать случайный массив. Вывести изначальный массив, отсортировать его <a href="https://ru.wikipedia.org/wiki/%D0%A1%D0%BE%D1%80%D1%82%D0%B8%D1%80%D0%BE%D0%B2%D0%BA%D0%B0_%D0%BF%D1%83%D0%B7%D1%8B%D1%80%D1%8C%D0%BA%D0%BE%D0%BC">пузырьком</a>',
+            'class' =>TaskPyz::class
         ],
         [
             'title' => 'Сортировка массива. Шейкер',
@@ -218,12 +221,7 @@ class TaskFact extends TaskPrototype{
         {
             return 1;
         }
-        $s = 1;
-        for ($i = 1; $i <= $n; $i++)
-        {
-            $s = $s * $i;
-        }
-        return $s;
+        return $n*$this->fact($n-1);
     }
 
     public function func()
@@ -236,30 +234,94 @@ class TaskFact extends TaskPrototype{
 
 class TaskFib extends TaskPrototype{
 
-    public $fib1 = 0;
-    public $fib2 = 1;
+    public $a;
+    public $b;
     public $i;
-    public $sum;
-    public $n;
+    public $n = 5;
     public $s;
 
-    private function fib($fib1,$fib2){
-        $i=1;
-        $n=5;
-        while ($i<$n) {
-            $sum = $fib2 + $fib1;
-            $fib1 = $fib2;
-            $fib2 = $sum;
-            $i++;
+    private function fib($n){
+        $a=0;
+        $b=1;
+        $s=0;
+        for ($i=0;$i<$n;$i++);{
+        $s=$a+$b;
+        $a=$b;
+        $b=$s;
         }
-    return $i<$n;
+       // return $n;
     }
 
 
     public function func()
     {
-        $out[] = "n!={$this->fib($this->sum)}";
+        $out[] = "n!={$this->fib(s)}";
         return $out;
     }
 
+}
+
+class TaskMas extends TaskPrototype{
+
+    public $aArray=[];
+
+
+    private function mas($aArray){
+        for($i=0; $i<10; $i++) {
+            $aArray[$i] = rand(0,10);
+        }
+         return $aArray;
+    }
+
+    public function func()
+    {
+        $out[] = "Генерация массива = {$this->mas(aArray)}";
+        return $out;
+    }
+}
+
+class TaskMasiv extends TaskPrototype{
+
+    public $bArray=[];
+
+
+    private function masiv($bArray){
+        for($i=0; $i<10; $i++) {
+            $bArray[$i] = rand(0,10);
+        }
+        return $bArray;
+    }
+
+    public function func()
+    {
+        // ругается на masiv($bArray)
+        foreach ($this->masiv($bArray) as $value) {
+            echo "$value";
+            if ($value % 2 != 0) {
+                $out[] = "Нечётные элемент {$value}";
+            } elseif ($value % 2 == 0) {
+                $out[] = "Чётные элемент {$value}";
+            }
+        }
+        return $out;
+    }
+}
+
+class TaskPyz extends TaskPrototype{
+
+    public $cArray=[];
+
+
+    private function pyz($cArray){
+        for($i=0; $i<10; $i++) {
+            $cArray[$i] = rand(0,10);
+        }
+        return $cArray;
+    }
+
+    public function func()
+    {
+
+
+    }
 }
