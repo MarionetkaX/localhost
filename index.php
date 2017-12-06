@@ -1,6 +1,8 @@
 <?
 	require('Headers.php');
-	require('Classes.php');
+	//require('Classes.php');
+    require('Object.php');
+    require('Pizza.php');
 ?>
 
 <html>
@@ -10,12 +12,12 @@
 	</head>
 	<body>
 		<?
-			$TaskManager = new TaskManager();
+        $obj = new Object();
 
-			if ($TaskManager->oCurrentTask)
-				$TaskManager->buildResult();
-			else
-				$TaskManager->buildMenu();
-		?>
+        $oPizza = new Pizza(['name' => 'fgdfgdf', 'de']);
+        $oPizza
+            ->setName('sdsda')
+            ->setDescription('asdasd');
+        ?>
 	</body>
 </html>

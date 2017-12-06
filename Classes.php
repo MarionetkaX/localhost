@@ -212,8 +212,6 @@ class TaskFact extends TaskPrototype{
 
 
     public $n = 7;
-    public $i;
-    public $s;
 
     private function fact($n){
 
@@ -226,7 +224,7 @@ class TaskFact extends TaskPrototype{
 
     public function func()
     {
-        $out[] = "n!={$this->n}";
+        $out[] = "Факториал n-го элемента={$this->n}";
         $out[] = "n!={$this->fact($this->n)}";
         return $out;
     }
@@ -234,28 +232,22 @@ class TaskFact extends TaskPrototype{
 
 class TaskFib extends TaskPrototype{
 
-    public $a;
-    public $b;
-    public $i;
-    public $n = 5;
-    public $s;
+    public $n = 7;
 
     private function fib($n){
-        $a=0;
-        $b=1;
-        $s=0;
-        for ($i=0;$i<$n;$i++);{
-        $s=$a+$b;
-        $a=$b;
-        $b=$s;
-        }
-       // return $n;
-    }
 
+       if ($n < 3) {
+            return 1;
+        }
+        else {
+            return $this->fib($n - 1)+$this->fib($n-2);
+        }
+    }
 
     public function func()
     {
-        $out[] = "n!={$this->fib(s)}";
+        $out[] = "Номер n-го ряда численности фибонач={$this->n}";
+        $out[] = "Число фибоначи={$this->fib($this->n)}";
         return $out;
     }
 
