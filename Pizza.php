@@ -1,26 +1,25 @@
 <?php
 /**
  * Created by PhpStorm.
- * User: anonymous
- * Date: 12/2/2017
- * Time: 12:53 PM
+ * User: rv_000
+ * Date: 07.12.2017
+ * Time: 19:02
  */
 
 /**
  * Class Pizza
  * @property string $name
  * @property string $description
- * @property Ingridients[] $Ingridients
- * @property $price
+ * @property float $price
+ * @property Ingridients[] $aIngridients
  *
  */
 class Pizza extends Object
 {
-
-    private $aIng= [];
+    private $aIng = [];
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getName()
     {
@@ -28,59 +27,55 @@ class Pizza extends Object
     }
 
     /**
-     * @param mixed $name
-     * @return $this
+     * @param string $name
      */
-    public function setName($name): Pizza
+    public function setName($name)
     {
-        return $this->setValueForParam('name',$name);
+        $this->setValueForParam('name',$name);
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getDescription()
     {
-        return $this->description;
+        return $this->getValueFromParams('description');
     }
 
     /**
-     * @param mixed $description
+     * @param string $description
      */
-    public function setDescription($description): void
+    public function setDescription($description)
     {
-        $this->description = $description;
+        $this->setValueForParam('description',$description);
+    }
+
+
+    /**
+     * @return float
+     */
+    public function getPrice()
+    {
+        return null;
     }
 
     /**
      * @return Ingridients[]
      */
-    public function getIngridients(): array
+    public function getAIngridients()
     {
         return $this->aIng;
     }
 
     /**
-     * @param Ingridients $oIngr
+     * @param Ingridients $aIngridients
+     * @return $this
      */
-    public function addIngridient($oIngr)
+    public function addtIngridient($aIngridients)
     {
-        $this->aIng[] = $oIngr;
+        $this->aIng[] = $aIngridients;
+        return $this;
     }
-
-    /**
-     * @return mixed
-     */
-    public function getPrice()
-    {
-        $price = 0;
-        foreach ($this->Ingridients as $item) {
-            $price += $item->price;
-        }
-        return $price;
-    }
-
-
 
 
 

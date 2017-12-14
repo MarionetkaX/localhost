@@ -1,25 +1,12 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: admin
- * Date: 06.12.2017
- * Time: 19:48
- */
 
 /**
  * Class Object
  * @property $id
  */
+abstract class Object{
 
-/**
- * Class Object
- * @property $MyProperty
- */
-class Object{
-
-    public $myParam;
-
-    private $aParams = [];
+    private $aParams =[];
 
     protected function getValueFromParams($param){
         return isset($this->aParams[$param])? $this->aParams[$param] : null;
@@ -49,27 +36,8 @@ class Object{
         }
     }
 
-    /**
-     * @return mixed
-     */
-    public function getMyProperty()
-    {
-        return $this->getValueFromParams('MyProperty');
-    }
-
-    /**
-     * @param mixed $MyProperty
-     */
-    public function setMyProperty($MyProperty): void
-    {
-        $this->setValueForParam('MyProperty0',$MyProperty);
-    }
-
-
-
     public function __get($name)
     {
-
         $sFuncName = 'get'.ucfirst($name);
         if (method_exists($this,$sFuncName ))
             return $this->$sFuncName();
@@ -84,7 +52,6 @@ class Object{
      */
     public function __set($name,$value)
     {
-
         $sFuncName = 'set'.ucfirst($name);
         if (method_exists($this,$sFuncName ))
             $this->$sFuncName($value);
@@ -99,6 +66,7 @@ class Object{
     {
         return $this->getValueFromParams('id');
     }
+
     /**
      * @param mixed $id
      * @return $this
